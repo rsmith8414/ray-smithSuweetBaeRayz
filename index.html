@@ -8,55 +8,58 @@
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
 
-<!-- [03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf] Storefront Banner with Login Button -->
-<header class="relative">
-  <img 
-    src="assets/StoreFront.png" 
-    alt="SuweetBaeRayz Storefront" 
-    class="w-full h-[500px] object-cover object-top shadow-lg"
-  />
-  <!-- Login Button (Ref: 03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf) -->
-  <div class="absolute top-4 right-4">
+  <!-- [03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf] Storefront Banner + Login Button -->
+  <header class="relative">
+    <img 
+      src="assets/StoreFront.png" 
+      alt="SuweetBaeRayz Storefront" 
+      class="w-full h-[500px] object-cover object-top shadow-lg"
+    />
+    <!-- Login Button -->
+    <div class="absolute top-4 right-4">
+      <a 
+        href="login.html" 
+        class="bg-lime-600 text-white font-semibold px-4 py-2 rounded shadow hover:bg-lime-700 transition"
+      >
+        Login
+      </a>
+    </div>
+  </header>
+
+  <!-- [03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf] View Cart Button -->
+  <div class="text-right max-w-5xl mx-auto mt-4 px-4">
     <a 
-      href="login.html" 
-      class="bg-white text-pink-600 font-semibold px-4 py-2 rounded shadow hover:bg-pink-100 transition"
+      href="cart.html" 
+      class="bg-lime-600 text-white px-4 py-2 rounded hover:bg-lime-700 transition"
     >
-      Login
+      View Cart 🛒
     </a>
   </div>
-</header>
 
-<!-- View Cart Button (Ref: 03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf) -->
-<div class="text-right max-w-5xl mx-auto mt-4 px-4">
-  <a href="cart.html" class="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition">
-    View Cart 🛒
-  </a>
-</div>
-
-<!-- Search Box (Ref: 12_Adding_Interactivity_with_DOM_Events.pdf) -->
-<div class="max-w-xl mx-auto mt-6 px-4">
-  <input 
-    type="text" 
-    placeholder="Search menu..." 
-    class="w-full px-4 py-2 border border-gray-300 rounded shadow focus:outline-none focus:ring-2 focus:ring-red-400"
-    id="searchInput"
-  />
-</div>
-
-<!-- Menu Items Section (Ref: 11_Working_with_Arrays.pdf) -->
-<section class="max-w-5xl mx-auto mt-12 px-4">
-  <h2 class="text-2xl font-semibold mb-4">Menu</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menuItems">
-    <!-- Items injected by JS -->
+  <!-- [12_Adding_Interactivity_with_DOM_Events.pdf] Search Box -->
+  <div class="max-w-xl mx-auto mt-6 px-4">
+    <input 
+      type="text" 
+      placeholder="Search menu..." 
+      class="w-full px-4 py-2 border border-gray-300 rounded shadow focus:outline-none focus:ring-2 focus:ring-lime-400"
+      id="searchInput"
+    />
   </div>
-</section>
 
-<!-- Footer -->
-<footer class="mt-12 bg-gray-800 text-white py-4 text-center">
-  &copy; 2025 SuweetBaeRayz. All rights reserved.
-</footer>
+  <!-- [11_Working_with_Arrays.pdf] Menu Items Rendered with JavaScript -->
+  <section class="max-w-5xl mx-auto mt-12 px-4">
+    <h2 class="text-2xl font-semibold mb-4">Menu</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menuItems">
+      <!-- Items injected by JS -->
+    </div>
+  </section>
 
-<!-- Script (Ref: 14_Working_with_Forms_and_Storage.pdf) -->
-<script src="js/main.js"></script>
+  <!-- [07_Using_ID_Class_Header_and_Footer_in_HTML.pdf] Footer -->
+  <footer class="mt-12 bg-gray-800 text-white py-4 text-center">
+    &copy; 2025 SuweetBaeRayz. All rights reserved.
+  </footer>
+
+  <!-- [14_Working_with_Forms_and_Storage.pdf] JavaScript for Interactivity -->
+  <script src="js/main.js"></script>
 </body>
 </html>

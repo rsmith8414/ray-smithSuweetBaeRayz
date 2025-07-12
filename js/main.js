@@ -18,7 +18,7 @@ if (!localStorage.getItem("users")) {
   localStorage.setItem("users", JSON.stringify(users));
 }
 
-// --- [06_Creating_Forms_Using_HTML.pdf] Handle Login Form ---
+// --- [06_Creating_Forms_Using_HTML.pdf] Handle Login & Registration Forms ---
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- [06_Creating_Forms_Using_HTML.pdf] Handle Registration Form ---
   const registerForm = document.getElementById("registerForm");
   if (registerForm) {
     registerForm.addEventListener("submit", function (e) {
@@ -77,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- [11_Working_with_Arrays.pdf] Render Menu Items ---
+  // --- [11_Working_with_Arrays.pdf] Render Menu Items Dynamically ---
   const menuItemsContainer = document.getElementById("menuItems");
   const menuItems = [
     { name: "Teriyaki Chicken", image: "TeryakiChicken.png", price: 8 },
@@ -91,9 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Surf's Up Dude Shirt", image: "SurfShirt.png", price: 29.99 },
     { name: "Porky The Shirt", image: "PulledPorkshirt.png", price: 29.99 },
     { name: "Garlic Green Beans", image: "GarlicGreenBeans.png", price: 4.99 },
-    { name: "Fresh Pinnapple Juice", image: "FreshPineappleJuice.png", price: 8.99 }
-    
-
+    { name: "Fresh Pineapple Juice", image: "FreshPineappleJuice.png", price: 8.99 }
   ];
 
   if (menuItemsContainer) {
@@ -107,18 +104,20 @@ document.addEventListener("DOMContentLoaded", () => {
       card.className = "bg-white p-4 rounded-lg shadow hover:shadow-lg transition";
 
       card.innerHTML = `
-        <img src="assets/${item.image}" alt="${item.name}" class="w-full h-40 object-cover rounded mb-2">
-        <h3 class="text-lg font-semibold">${item.name}</h3>
-        <p class="text-sm text-gray-600 mb-2">$${item.price.toFixed(2)}</p>
-        <button class="bg-pink-600 text-white px-4 py-1 rounded add-to-cart" data-name="${item.name}" data-price="${item.price}">
-          Add to Cart
-        </button>
+        <img src="assets/${item.image}" alt="${item.name}" class="w-40 h-40 object-cover rounded-full mx-auto mb-3">
+        <h3 class="text-lg font-semibold text-center">${item.name}</h3>
+        <p class="text-sm text-gray-600 text-center mb-2">$${item.price.toFixed(2)}</p>
+        <div class="text-center">
+          <button class="bg-lime-600 text-white px-4 py-1 rounded hover:bg-lime-700 transition add-to-cart" data-name="${item.name}" data-price="${item.price}">
+            Add to Cart
+          </button>
+        </div>
       `;
       menuItemsContainer.appendChild(card);
     });
   }
 
-  // --- [12_Adding_Interactivity_with_DOM_Events.pdf] Add to Cart Logic ---
+  // --- [12_Adding_Interactivity_with_DOM_Events.pdf] Handle Add to Cart ---
   document.addEventListener("click", function (e) {
     if (e.target.classList.contains("add-to-cart")) {
       const name = e.target.dataset.name;
@@ -132,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- [13_Applying_Text_Styling_Borders_and_Background_Images_in_HTML.pdf] Search Menu ---
+  // --- [13_Applying_Text_Styling_Borders_and_Background_Images_in_HTML.pdf] Filter/Search Items ---
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
     searchInput.addEventListener("input", function () {
@@ -144,9 +143,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- [14_Working_with_Forms_and_Storage.pdf] Display Cart (if on cart.html) ---
+  // --- [14_Working_with_Forms_and_Storage.pdf] Display Cart Items on Cart Page ---
   const cartContainer = document.getElementById("cartItems");
   const cartTotal = document.getElementById("cartTotal");
+
   if (cartContainer && cartTotal) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cartContainer.innerHTML = "";
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cartTotal.textContent = `$${total.toFixed(2)}`;
   }
 
-  // --- [12_Adding_Interactivity_with_DOM_Events.pdf] Remove from Cart ---
+  // --- [12_Adding_Interactivity_with_DOM_Events.pdf] Remove Items from Cart ---
   if (cartContainer) {
     cartContainer.addEventListener("click", function (e) {
       if (e.target.classList.contains("remove-item")) {

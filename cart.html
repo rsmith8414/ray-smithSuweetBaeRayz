@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Cart | SuweetBaeRayz</title>
+
+  <!-- [01_Styling_Essential_Elements_using_Tailwind.pdf] Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -12,31 +14,37 @@
   <div class="text-right p-4">
     <a 
       href="login.html" 
-      class="bg-white text-pink-600 font-semibold px-4 py-2 rounded shadow hover:bg-pink-100 transition"
+      class="bg-white text-lime-600 font-semibold px-4 py-2 rounded shadow hover:bg-lime-100 transition"
     >
       Login
     </a>
   </div>
 
+  <!-- Cart Section -->
   <div class="max-w-4xl mx-auto py-4 px-4">
     <h1 class="text-3xl font-bold mb-6 text-center text-pink-700">Your Cart</h1>
 
-    <!-- [12_Adding_Interactivity_with_DOM_Events.pdf] -->
+    <!-- [12_Adding_Interactivity_with_DOM_Events.pdf] Display Cart -->
     <div id="cartContainer" class="space-y-6"></div>
 
+    <!-- [14_Working_with_Forms_and_Storage.pdf] Cart Total + Place Order -->
     <div class="text-right mt-6">
-      <p class="text-xl font-semibold">Total: $<span id="cartTotal">0.00</span></p>
-      <button onclick="placeOrder()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+      <p class="text-xl font-semibold">Total: <span id="cartTotal">$0.00</span></p>
+      <button 
+        onclick="placeOrder()" 
+        class="mt-4 bg-lime-600 text-white px-6 py-2 rounded hover:bg-lime-700"
+      >
         Place Order
       </button>
     </div>
 
+    <!-- Back to Menu Link (Ref: 03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf) -->
     <div class="mt-6 text-center">
-      <a href="index.html" class="text-sm text-pink-600 underline">← Back to Menu</a>
+      <a href="index.html" class="text-sm text-lime-600 underline">← Back to Menu</a>
     </div>
   </div>
 
-  <!-- [04_Working_with_Functions.pdf] -->
+  <!-- [04_Working_with_Functions.pdf] JS Logic -->
   <script>
     // Render cart on page load
     document.addEventListener("DOMContentLoaded", () => {
@@ -48,7 +56,7 @@
 
       if (cart.length === 0) {
         container.innerHTML = "<p>Your cart is empty.</p>";
-        totalSpan.textContent = "0.00";
+        totalSpan.textContent = "$0.00";
         return;
       }
 
@@ -71,7 +79,7 @@
         container.appendChild(itemDiv);
       });
 
-      totalSpan.textContent = total.toFixed(2);
+      totalSpan.textContent = `$${total.toFixed(2)}`;
     });
 
     // Remove item from cart
@@ -108,6 +116,7 @@
     }
   </script>
 
+  <!-- [14_Working_with_Forms_and_Storage.pdf] Shared Logic -->
   <script src="js/main.js"></script>
 </body>
 </html>
