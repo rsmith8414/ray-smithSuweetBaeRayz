@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- [12_Adding_Interactivity_with_DOM_Events.pdf] Cart Logic ---
+  // --- [12_Adding_Interactivity_with_DOM_Events.pdf] Add to Cart Logic ---
   document.addEventListener("click", function (e) {
     if (e.target.classList.contains("add-to-cart")) {
       const name = e.target.dataset.name;
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- [14_Working_with_Forms_and_Storage.pdf] Menu Search ---
+  // --- [13_Applying_Text_Styling_Borders_and_Background_Images_in_HTML.pdf] Search Menu ---
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
     searchInput.addEventListener("input", function () {
@@ -137,6 +137,41 @@ document.addEventListener("DOMContentLoaded", () => {
         item.name.toLowerCase().includes(searchTerm)
       );
       renderMenuItems(filteredItems);
+    });
+  }
+
+  // --- [14_Working_with_Forms_and_Storage.pdf] Display Cart (if on cart.html) ---
+  const cartContainer = document.getElementById("cartItems");
+  const cartTotal = document.getElementById("cartTotal");
+  if (cartContainer && cartTotal) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      total += item.price;
+      const div = document.createElement("div");
+      div.className = "flex justify-between items-center border-b py-2";
+      div.innerHTML = `
+        <span>${item.name} - $${item.price.toFixed(2)}</span>
+        <button class="text-red-500 remove-item" data-index="${index}">Remove</button>
+      `;
+      cartContainer.appendChild(div);
+    });
+
+    cartTotal.textContent = `$${total.toFixed(2)}`;
+  }
+
+  // --- [12_Adding_Interactivity_with_DOM_Events.pdf] Remove from Cart ---
+  if (cartContainer) {
+    cartContainer.addEventListener("click", function (e) {
+      if (e.target.classList.contains("remove-item")) {
+        const index = parseInt(e.target.dataset.index);
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        location.reload();
+      }
     });
   }
 });

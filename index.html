@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Document</title>
- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SuweetBaeRayz - Menu</title>
@@ -19,13 +8,20 @@
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
 
-
+  <!-- Header (Ref: 05_Creating_Layouts_Using_Tailwind_CSS.pdf) -->
   <header class="bg-red-600 text-white py-4">
-    <h1 class="text-center text-4x1 font-bold">SuweetBaeRayz</h1>
+    <h1 class="text-center text-4xl font-bold">SuweetBaeRayz</h1>
     <p class="text-center text-sm">BBQ & Hawaiin Shirt Shack</p>
   </header>
 
-  
+  <!-- View Cart Button (Ref: 03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf) -->
+  <div class="text-right max-w-5xl mx-auto mt-4 px-4">
+    <a href="cart.html" class="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition">
+      View Cart 🛒
+    </a>
+  </div>
+
+  <!-- Search Box (Ref: 12_Adding_Interactivity_with_DOM_Events.pdf) -->
   <div class="max-w-xl mx-auto mt-6 px-4">
     <input 
       type="text" 
@@ -35,20 +31,20 @@
     />
   </div>
 
-  
-
+  <!-- Menu Items Section (Ref: 11_Working_with_Arrays.pdf) -->
   <section class="max-w-5xl mx-auto mt-12 px-4">
     <h2 class="text-2xl font-semibold mb-4">Menu</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menuItems">
-   
+      <!-- Items injected by JS -->
     </div>
   </section>
 
- 
+  <!-- Footer -->
   <footer class="mt-12 bg-gray-800 text-white py-4 text-center">
     &copy; 2025 SuweetBaeRayz. All rights reserved.
   </footer>
 
+  <!-- Script (Ref: 14_Working_with_Forms_and_Storage.pdf) -->
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart | SuweetBaeRayz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="max-w-4xl mx-auto py-10 px-4">
+    <h1 class="text-3xl font-bold mb-6 text-center text-pink-700">Your Cart</h1>
+
+    <!-- [12_Adding_Interactivity_with_DOM_Events.pdf] -->
+    <div id="cartContainer" class="space-y-6"></div>
+
+    <div class="text-right mt-6">
+      <p class="text-xl font-semibold">Total: $<span id="cartTotal">0.00</span></p>
+      <button onclick="placeOrder()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+        Place Order
+      </button>
+    </div>
+
+    <div class="mt-6 text-center">
+      <a href="index.html" class="text-sm text-pink-600 underline">← Back to Menu</a>
+    </div>
+  </div>
+
+  <!-- [04_Working_with_Functions.pdf] -->
+  <script>
+    // Render cart on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const container = document.getElementById("cartContainer");
+      const totalSpan = document.getElementById("cartTotal");
+
+      container.innerHTML = "";
+
+      if (cart.length === 0) {
+        container.innerHTML = "<p>Your cart is empty.</p>";
+        totalSpan.textContent = "0.00";
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "bg-white p-4 rounded shadow flex justify-between items-center";
+
+        itemDiv.innerHTML = `
+          <div>
+            <p class="font-semibold">${item.name}</p>
+            <p class="text-sm text-gray-600">$${item.price.toFixed(2)}</p>
+          </div>
+          <button onclick="removeItem(${index})" class="text-red-500 hover:underline text-sm">Remove</button>
+        `;
+
+        container.appendChild(itemDiv);
+      });
+
+      totalSpan.textContent = total.toFixed(2);
+    });
+
+    // Remove item from cart
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      location.reload(); // refresh cart display
+    }
+
+    // Place order
+    function placeOrder() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (!user) {
+        alert("You must be logged in to place an order.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+      allOrders.push({ user: user.username, items: cart });
+      localStorage.setItem("allOrders", JSON.stringify(allOrders));
+
+      localStorage.removeItem("cart");
+
+      alert("Order placed successfully!");
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
