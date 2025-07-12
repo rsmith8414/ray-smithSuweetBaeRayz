@@ -87,9 +87,13 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Kona Salad", image: "KonaSalad.png", price: 8 },
     { name: "Dragon Breath Wings", image: "DragonBreathWings.png", price: 8 },
     { name: "Brewa Kahlua", image: "BrewaKahlua.png", price: 6 },
-    { name: "Suweet Shirt", image: "SuweetShirt.png", price: 29.99 },
-    { name: "Surf Shirt", image: "SurfShirt.png", price: 29.99 },
-    { name: "Pulled Pork Shirt", image: "PulledPorkshirt.png", price: 29.99 }
+    { name: "SuweetBaeRayz Shirt", image: "SuweetShirt.png", price: 29.99 },
+    { name: "Surf's Up Dude Shirt", image: "SurfShirt.png", price: 29.99 },
+    { name: "Porky The Shirt", image: "PulledPorkshirt.png", price: 29.99 },
+    { name: "Garlic Green Beans", image: "GarlicGreenBeans.png", price: 4.99 },
+    { name: "Fresh Pinnapple Juice", image: "FreshPineappleJuice.png", price: 8.99 }
+    
+
   ];
 
   if (menuItemsContainer) {
