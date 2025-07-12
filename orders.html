@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Order History | SuweetBaeRayz</title>
 
-  <!-- Tailwind CDN (Ref: 01_Styling_Essential_Elements_using_Tailwind.pdf) -->
+  <!-- [01_Styling_Essential_Elements_using_Tailwind.pdf] Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen p-6">
 
-  <!-- Header (Ref: 07_Using_ID_Class_Header_and_Footer_in_HTML.pdf) -->
+  <!-- [07_Using_ID_Class_Header_and_Footer_in_HTML.pdf] Header -->
   <header class="mb-6">
     <h1 class="text-3xl font-bold text-center text-pink-700">Your Past Orders</h1>
   </header>
 
-  <!-- Orders List (Ref: 05_Adding_Tables_to_a_Web_Page.pdf) -->
+  <!-- [05_Adding_Tables_to_a_Web_Page.pdf] Orders Table -->
   <main class="max-w-4xl mx-auto bg-white p-6 rounded shadow-md">
     <table class="min-w-full divide-y divide-gray-200">
       <thead>
@@ -27,21 +27,60 @@
         </tr>
       </thead>
       <tbody id="ordersTable" class="bg-white divide-y divide-gray-200">
-        <!-- JavaScript will inject past orders here -->
-        <!-- Sample Static Row -->
-        <tr>
-          <td class="px-6 py-4 whitespace-nowrap">12345</td>
-          <td class="px-6 py-4">BBQ Pork Sandwich, Fries, Sweet Tea</td>
-          <td class="px-6 py-4">$18.50</td>
-          <td class="px-6 py-4">
-            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Cancel</button>
-          </td>
-        </tr>
+        <!-- JS will render orders here -->
       </tbody>
     </table>
   </main>
 
-  <!-- JS Placeholder -->
-  <script src="js/main.js"></script>
+  <!-- [14_Working_with_Forms_and_Storage.pdf] JS Storage Access -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (!user) {
+        alert("You must be logged in to view orders.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+      const userOrders = allOrders
+        .map((order, index) => ({ ...order, index }))
+        .filter(order => order.user === user.username);
+
+      const table = document.getElementById("ordersTable");
+      table.innerHTML = "";
+
+      if (userOrders.length === 0) {
+        table.innerHTML = `<tr><td colspan="4" class="px-6 py-4 text-center text-gray-500">No orders found.</td></tr>`;
+        return;
+      }
+
+      userOrders.forEach((order, idx) => {
+        const total = order.items.reduce((sum, item) => sum + item.price, 0);
+        const itemList = order.items.map(item => item.name).join(", ");
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="px-6 py-4 whitespace-nowrap">#${idx + 1}</td>
+          <td class="px-6 py-4">${itemList}</td>
+          <td class="px-6 py-4">$${total.toFixed(2)}</td>
+          <td class="px-6 py-4">
+            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm" onclick="cancelOrder(${order.index})">
+              Cancel
+            </button>
+          </td>
+        `;
+        table.appendChild(row);
+      });
+    });
+
+    function cancelOrder(orderIndex) {
+      const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+      allOrders.splice(orderIndex, 1);
+      localStorage.setItem("allOrders", JSON.stringify(allOrders));
+      location.reload();
+    }
+  </script>
+
 </body>
 </html>

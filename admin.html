@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Dashboard</title>
-  
-  <!-- Tailwind CSS via CDN -->
+
+  <!-- [01_Styling_Essential_Elements_using_Tailwind.pdf] Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Corrected Role Check -->
+  <!-- [06_Creating_Forms_Using_HTML.pdf] Role Check Redirect -->
   <script>
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!user || user.role !== "admin") {
@@ -19,37 +19,52 @@
 
 <body class="bg-gray-100 font-sans">
   <div class="max-w-6xl mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-6">Admin Dashboard</h1>
+    <!-- [07_Using_ID_Class_Header_and_Footer_in_HTML.pdf] Page Header -->
+    <h1 class="text-4xl font-bold mb-6 text-pink-700 text-center">Admin Dashboard</h1>
 
-    <!-- Orders Section -->
-    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-      <h2 class="text-2xl font-semibold mb-4">User Orders</h2>
-      <div id="orders-container" class="space-y-4">
-        <!-- Orders will be injected here dynamically -->
-      </div>
+    <!-- [05_Adding_Tables_to_a_Web_Page.pdf] Orders Table -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+      <h2 class="text-2xl font-semibold mb-4">All User Orders</h2>
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order #</th>
+            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
+            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+          </tr>
+        </thead>
+        <tbody id="ordersTable" class="bg-white divide-y divide-gray-100">
+          <!-- JavaScript will inject orders here -->
+        </tbody>
+      </table>
     </div>
 
-    <!-- Logout Button -->
-    <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-      Logout
-    </button>
+    <!-- Logout -->
+    <div class="text-center">
+      <button onclick="logout()" class="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">
+        Logout
+      </button>
+    </div>
   </div>
 
+  <!-- [13_Introduction_to_Objects_in_JavaScript.pdf] Render Orders -->
   <script>
-    const ordersContainer = document.getElementById("orders-container");
-    const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [
-      { user: "alice", items: ["Burger", "Fries"] },
-      { user: "bob", items: ["Tacos", "Soda"] }
-    ];
+    const ordersTable = document.getElementById("ordersTable");
+    const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
 
-    allOrders.forEach(order => {
-      const div = document.createElement("div");
-      div.className = "border p-4 rounded bg-gray-50";
-      div.innerHTML = `
-        <p><strong>User:</strong> ${order.user}</p>
-        <p><strong>Items:</strong> ${order.items.join(", ")}</p>
+    allOrders.forEach((order, index) => {
+      const total = order.items.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+      const itemList = order.items.map(item => `${item.name} ($${item.price.toFixed(2)})`).join("<br>");
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td class="px-4 py-3 whitespace-nowrap">${index + 1}</td>
+        <td class="px-4 py-3 whitespace-nowrap">${order.user}</td>
+        <td class="px-4 py-3">${itemList}</td>
+        <td class="px-4 py-3 font-semibold">$${total}</td>
       `;
-      ordersContainer.appendChild(div);
+      ordersTable.appendChild(row);
     });
 
     function logout() {
