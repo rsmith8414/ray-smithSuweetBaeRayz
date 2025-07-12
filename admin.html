@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>Admin Dashboard</title>
 
-  <!-- Tailwind CSS (Ref: 01_Styling_Essential_Elements_using_Tailwind.pdf) -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!--  adding tailwind Styling_Essential_Elements_using_Tailwind.pdf) -->
+   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Role Check (Ref: 14_Working_with_Forms_and_Storage.pdf) -->
+  <!-- admin or user check14_Working_with_Forms_and_Storage.pdf -->
   <script>
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!user || user.role !== "admin") {
@@ -18,25 +18,25 @@
 </head>
 <body class="bg-gray-100 font-sans min-h-screen">
 
-  <!-- Header (Ref: 07_Using_ID_Class_Header_and_Footer_in_HTML.pdf) -->
+  <!-- Using_ID_Class_Header_and_Footer_in_HTML.pdf -->
   <header class="bg-white shadow p-4 text-right">
-    <a href="index.html" class="bg-lime-600 text-white px-4 py-2 rounded hover:bg-lime-700 transition">Back to Menu</a>
+      <a href="index.html" class="bg-lime-600 text-white px-4 py-2 rounded hover:bg-lime-700 transition">Back to Menu</a>
   </header>
 
-  <!-- Admin Content -->
+  <!-- Admin setup -->
   <div class="max-w-6xl mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-6 text-lime-700">Admin Dashboard</h1>
+      <h1 class="text-4xl font-bold mb-6 text-lime-700">Admin Dashboard</h1>
 
-    <!-- Orders (Ref: 05_Adding_Tables_to_a_Web_Page.pdf) -->
+    <!-- Adding_Tables_to_a_Web_Page.pdf) -->
     <div class="bg-white p-6 rounded-lg shadow-md">
       <h2 class="text-2xl font-semibold mb-4">User Orders</h2>
       <div id="orders-container" class="space-y-4">
-        <!-- JS Injects Order Data -->
+        
       </div>
     </div>
   </div>
 
-  <!-- Admin Order Script (Ref: 04_Working_with_Functions.pdf) -->
+  <!-- Working_with_Functons.pdf) -->
   <script>
     const ordersContainer = document.getElementById("orders-container");
     const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
@@ -46,14 +46,14 @@
     } else {
       allOrders.forEach((order, index) => {
         const itemList = order.items.map(i => i.name).join(", ");
-        const total = order.items.reduce((sum, i) => sum + i.price, 0).toFixed(2);
+         const total = order.items.reduce((sum, i) => sum + i.price, 0).toFixed(2);
 
         const card = document.createElement("div");
         card.className = "border p-4 rounded bg-gray-50 flex justify-between items-start flex-wrap";
 
         card.innerHTML = `
           <div class="mb-2">
-            <p><strong>User:</strong> ${order.user}</p>
+              <p><strong>User:</strong> ${order.user}</p>
             <p><strong>Items:</strong> ${itemList}</p>
             <p><strong>Total:</strong> $${total}</p>
           </div>

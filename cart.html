@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Cart | SuweetBaeRayz</title>
+   <title>Your Cart | SuweetBaeRayz</title>
 
-  <!-- [01_Styling_Essential_Elements_using_Tailwind.pdf] Tailwind via CDN -->
+  <!-- tailwind setup styling_Essential_Elements_using_Tailwind.pdf -->
+   
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 font-sans">
+ </head>
+ <body class="bg-gray-100 font-sans">
 
-  <!-- Login Button (Ref: 03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf) -->
+  <!-- images to webpage Login Button Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf -->
+
   <div class="text-right p-4">
     <a 
       href="login.html" 
@@ -20,42 +22,49 @@
     </a>
   </div>
 
-  <!-- Cart Section -->
-  <div class="max-w-4xl mx-auto py-4 px-4">
-    <h1 class="text-3xl font-bold mb-6 text-center text-pink-700">Your Cart</h1>
+  <!-- cart -->
 
-    <!-- [12_Adding_Interactivity_with_DOM_Events.pdf] Display Cart -->
+  <div class="max-w-4xl mx-auto py-4 px-4">
+     <h1 class="text-3xl font-bold mb-6 text-center text-pink-700">Your Cart</h1>
+
+    <!-- cart Adding_Interactivity_with_DOM_Events.pdf -->
+
     <div id="cartContainer" class="space-y-6"></div>
 
-    <!-- [14_Working_with_Forms_and_Storage.pdf] Cart Total + Place Order -->
+    <!-- plalce order screen Working_with_Forms_and_Storage.pdf -->
+
+
     <div class="text-right mt-6">
       <p class="text-xl font-semibold">Total: <span id="cartTotal">$0.00</span></p>
       <button 
-        onclick="placeOrder()" 
+         onclick="placeOrder()" 
         class="mt-4 bg-lime-600 text-white px-6 py-2 rounded hover:bg-lime-700"
       >
-        Place Order
-      </button>
+        Place You're Order
+       </button>
     </div>
 
-    <!-- Back to Menu Link (Ref: 03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf) -->
+    <!-- menulink Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf -->
+
     <div class="mt-6 text-center">
-      <a href="index.html" class="text-sm text-lime-600 underline">← Back to Menu</a>
+       <a href="index.html" class="text-sm text-lime-600 underline">← Back to Menu</a>
     </div>
   </div>
 
-  <!-- [04_Working_with_Functions.pdf] JS Logic -->
+  <!--+ cart on load page Working_with_Functions.pdf  -->
+
+
   <script>
-    // Render cart on page load
+    
     document.addEventListener("DOMContentLoaded", () => {
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const container = document.getElementById("cartContainer");
+       const container = document.getElementById("cartContainer");
       const totalSpan = document.getElementById("cartTotal");
 
       container.innerHTML = "";
 
       if (cart.length === 0) {
-        container.innerHTML = "<p>Your cart is empty.</p>";
+        container.innerHTML = "<p>Cart empty - don't go hungry!</p>";
         totalSpan.textContent = "$0.00";
         return;
       }
@@ -63,15 +72,15 @@
       let total = 0;
 
       cart.forEach((item, index) => {
-        total += item.price;
+          total += item.price;
 
         const itemDiv = document.createElement("div");
-        itemDiv.className = "bg-white p-4 rounded shadow flex justify-between items-center";
+          itemDiv.className = "bg-white p-4 rounded shadow flex justify-between items-center";
 
         itemDiv.innerHTML = `
           <div>
             <p class="font-semibold">${item.name}</p>
-            <p class="text-sm text-gray-600">$${item.price.toFixed(2)}</p>
+             <p class="text-sm text-gray-600">$${item.price.toFixed(2)}</p>
           </div>
           <button onclick="removeItem(${index})" class="text-red-500 hover:underline text-sm">Remove</button>
         `;
@@ -82,15 +91,15 @@
       totalSpan.textContent = `$${total.toFixed(2)}`;
     });
 
-    // Remove item from cart
+    
     function removeItem(index) {
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart.splice(index, 1);
       localStorage.setItem("cart", JSON.stringify(cart));
-      location.reload(); // refresh cart display
+      location.reload(); 
     }
 
-    // Place order
+    
     function placeOrder() {
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
       if (cart.length === 0) {
@@ -116,7 +125,7 @@
     }
   </script>
 
-  <!-- [14_Working_with_Forms_and_Storage.pdf] Shared Logic -->
-  <script src="js/main.js"></script>
+  <!-- script to main.js 14_Working_with_Forms_and_Storage.pdf -->
+    <script src="js/main.js"></script>
 </body>
 </html>

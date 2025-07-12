@@ -5,46 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Order History | SuweetBaeRayz</title>
 
-  <!-- Tailwind CDN (Ref: 01_Styling_Essential_Elements_using_Tailwind.pdf) -->
+  <!-- tailwind Styling_Essential_Elements_using_Tailwind.pdf -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen p-6 font-sans">
 
-  <!-- Login Button (Ref: 03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf) -->
-  <div class="text-right mb-4">
+  <!-- login setup Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf -->
+   <div class="text-right mb-4">
     <a 
-      href="login.html" 
+       href="login.html" 
       class="bg-white text-lime-600 font-semibold px-4 py-2 rounded shadow hover:bg-lime-100 transition"
     >
       Login
     </a>
   </div>
 
-  <!-- Header (Ref: 07_Using_ID_Class_Header_and_Footer_in_HTML.pdf) -->
+  <!-- Using_ID_Class_Header_and_Footer_in_HTML.pdf -->
   <header class="mb-6">
     <h1 class="text-3xl font-bold text-center text-lime-600">Your Past Orders</h1>
   </header>
 
-  <!-- Orders Table (Ref: 05_Adding_Tables_to_a_Web_Page.pdf) -->
+  <!-- orders Adding_Tables_to_a_Web_Page.pdf -->
   <main class="max-w-4xl mx-auto bg-white p-6 rounded shadow-md">
     <table class="min-w-full divide-y divide-gray-200">
       <thead>
         <tr>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Order #</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Items</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
+           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Items</th>
+           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
         </tr>
       </thead>
-      <tbody id="ordersTable" class="divide-y divide-gray-200">
-        <!-- JS will inject orders here -->
+       <tbody id="ordersTable" class="divide-y divide-gray-200">
+      
       </tbody>
     </table>
   </main>
 
-  <!-- Orders Script -->
+  
   <script>
-    // [04_Working_with_Functions.pdf]
+    // orders function Working_with_Functions.pdf
     document.addEventListener("DOMContentLoaded", () => {
       const user = JSON.parse(localStorage.getItem("loggedInUser"));
       if (!user) {
@@ -54,7 +54,7 @@
       }
 
       const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
-      const ordersTable = document.getElementById("ordersTable");
+       const ordersTable = document.getElementById("ordersTable");
 
       const userOrders = allOrders.filter(order => order.user === user.username);
 
@@ -63,9 +63,9 @@
         return;
       }
 
-      userOrders.forEach((order, index) => {
-        const total = order.items.reduce((sum, item) => sum + item.price, 0);
-        const itemNames = order.items.map(i => i.name).join(", ");
+       userOrders.forEach((order, index) => {
+         const total = order.items.reduce((sum, item) => sum + item.price, 0);
+         const itemNames = order.items.map(i => i.name).join(", ");
 
         const row = document.createElement("tr");
         row.innerHTML = `
@@ -93,7 +93,7 @@
     });
   </script>
 
-  <!-- [14_Working_with_Forms_and_Storage.pdf] -->
+  <!-- js setup Working_with_Forms_and_Storage.pdf -->
   <script src="js/main.js"></script>
 </body>
 </html>
