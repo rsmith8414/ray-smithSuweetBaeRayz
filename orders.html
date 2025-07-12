@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History | SuweetBaeRayz</title>
+
+  <!-- Tailwind CDN (Ref: 01_Styling_Essential_Elements_using_Tailwind.pdf) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+
+  <!-- Header (Ref: 07_Using_ID_Class_Header_and_Footer_in_HTML.pdf) -->
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-center text-pink-700">Your Past Orders</h1>
+  </header>
+
+  <!-- Orders List (Ref: 05_Adding_Tables_to_a_Web_Page.pdf) -->
+  <main class="max-w-4xl mx-auto bg-white p-6 rounded shadow-md">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead>
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order #</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTable" class="bg-white divide-y divide-gray-200">
+        <!-- JavaScript will inject past orders here -->
+        <!-- Sample Static Row -->
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">12345</td>
+          <td class="px-6 py-4">BBQ Pork Sandwich, Fries, Sweet Tea</td>
+          <td class="px-6 py-4">$18.50</td>
+          <td class="px-6 py-4">
+            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!-- JS Placeholder -->
+  <script src="js/main.js"></script>
+</body>
+</html>
