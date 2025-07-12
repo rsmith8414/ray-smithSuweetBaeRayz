@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | SuweetBaeRayz</title>
 
-  <!-- Tailwind CDN (Ref: 01_Styling_Essential_Elements_using_Tailwind.pdf) -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-pink-50 flex items-center justify-center h-screen">
 
-  <!-- Login Card Container (Ref: 13_Applying_Text_Styling_Borders_and_Background_Images_in_HTML.pdf) -->
+  <!-- Login Card -->
   <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-sm">
     <h2 class="text-2xl font-bold text-center text-pink-600 mb-6">Login</h2>
 
-    <!-- Login Form (Ref: 06_Creating_Forms_Using_HTML.pdf) -->
+    <!-- Login Form -->
     <form id="loginForm" class="space-y-4">
-      <!-- Email Input (Ref: 03_Styling_Input_Elements_Using_Tailwind_CSS.pdf) -->
+      
+      <!-- Username (Email) Input -->
       <div>
         <label for="email" class="block mb-1 text-sm font-medium">Email</label>
         <input 
@@ -24,7 +25,7 @@
           id="email" 
           required 
           class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-400"
-        >
+        />
       </div>
 
       <!-- Password Input -->
@@ -35,7 +36,7 @@
           id="password" 
           required 
           class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-400"
-        >
+        />
       </div>
 
       <!-- Submit Button -->
@@ -47,14 +48,14 @@
       </button>
     </form>
 
-    <!-- Registration Link (Ref: 03_Adding_Hyperlinks_Lists_and_Images_to_a_Web_Page.pdf) -->
+    <!-- Registration Link -->
     <p class="text-sm text-center mt-4">
       Don't have an account?
       <a href="register.html" class="text-pink-600 underline">Register</a>
     </p>
   </div>
 
-  <!-- Link JS later for login logic (Ref: 04_Working_with_Functions.pdf) -->
+  <!-- JS Login Logic -->
   <script src="js/main.js"></script>
 </body>
 </html>

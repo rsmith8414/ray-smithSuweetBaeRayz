@@ -1,8 +1,61 @@
-// main.js (inside login handler)
-if (username === "admin" && password === "admin123") {
-  // Optional: Save role in localStorage
-  localStorage.setItem("role", "admin");
-  window.location.href = "admin.html";
-} else {
-  // standard user login
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Corrected Role Check -->
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user || user.role !== "admin") {
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-6">Admin Dashboard</h1>
+
+    <!-- Orders Section -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-2xl font-semibold mb-4">User Orders</h2>
+      <div id="orders-container" class="space-y-4">
+        <!-- Orders will be injected here dynamically -->
+      </div>
+    </div>
+
+    <!-- Logout Button -->
+    <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+      Logout
+    </button>
+  </div>
+
+  <script>
+    const ordersContainer = document.getElementById("orders-container");
+    const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [
+      { user: "alice", items: ["Burger", "Fries"] },
+      { user: "bob", items: ["Tacos", "Soda"] }
+    ];
+
+    allOrders.forEach(order => {
+      const div = document.createElement("div");
+      div.className = "border p-4 rounded bg-gray-50";
+      div.innerHTML = `
+        <p><strong>User:</strong> ${order.user}</p>
+        <p><strong>Items:</strong> ${order.items.join(", ")}</p>
+      `;
+      ordersContainer.appendChild(div);
+    });
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
