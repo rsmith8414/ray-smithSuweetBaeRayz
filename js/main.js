@@ -1,4 +1,4 @@
-// --- [01_JavaScript_Fundamentals.pdf] Seed default users ---
+// --- users JavaScript_Fundamentals.pdf ---
 if (!localStorage.getItem("adminUser")) {
   localStorage.setItem("adminUser", JSON.stringify({
     username: "BaeRae@gmail.com",
@@ -18,7 +18,7 @@ if (!localStorage.getItem("users")) {
   localStorage.setItem("users", JSON.stringify(users));
 }
 
-// --- [06_Creating_Forms_Using_HTML.pdf] Handle Login & Registration Forms ---
+// --- register and login creating_Forms_Using_HTML.pdf ---
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
@@ -76,21 +76,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- [11_Working_with_Arrays.pdf] Render Menu Items Dynamically ---
+  // --- Working_with_Arrays.pdf dynamic menu ---
   const menuItemsContainer = document.getElementById("menuItems");
   const menuItems = [
-    { name: "Teriyaki Chicken", image: "TeryakiChicken.png", price: 8 },
-    { name: "Spicy Red Better Brisket", image: "SpicyRedBetterBrisket.png", price: 8 },
-    { name: "Pulled Pork Pretzel Bun", image: "PulledPorkPretzelBun.png", price: 8 },
-    { name: "Parm Corn", image: "ParmCorn.png", price: 8 },
-    { name: "Kona Salad", image: "KonaSalad.png", price: 8 },
-    { name: "Dragon Breath Wings", image: "DragonBreathWings.png", price: 8 },
-    { name: "Brewa Kahlua", image: "BrewaKahlua.png", price: 6 },
-    { name: "SuweetBaeRayz Shirt", image: "SuweetShirt.png", price: 29.99 },
-    { name: "Surf's Up Dude Shirt", image: "SurfShirt.png", price: 29.99 },
-    { name: "Porky The Shirt", image: "PulledPorkshirt.png", price: 29.99 },
-    { name: "Garlic Green Beans", image: "GarlicGreenBeans.png", price: 4.99 },
-    { name: "Fresh Pineapple Juice", image: "FreshPineappleJuice.png", price: 8.99 }
+    { name: "Teriyaki Chicken", image: "TeryakiChicken.png", price: 8, restaurant: "SuweetBaeRayz BBQ" },
+    { name: "Spicy Red Pepper Brisket", image: "SpicyRedBetterBrisket.png", price: 8, restaurant: "SuweetBaeRayz BBQ" },
+    { name: "Pulled Pork Pretzel Bun", image: "PulledPorkPretzelBun.png", price: 8, restaurant: "SuweetBaeRayz BBQ" },
+    { name: "Parm Corn", image: "ParmCorn.png", price: 8, restaurant: "SuweetBaeRayz BBQ" },
+    { name: "Kona Salad", image: "KonaSalad.png", price: 8, restaurant: "SushiLand" },
+    { name: "Dragon Breath Wings", image: "DragonBreathWings.png", price: 8, restaurant: "SushiLand" },
+    { name: "Brewa Kahlua", image: "BrewaKahlua.png", price: 6, restaurant: "SuweetBaeRayz BBQ" },
+    { name: "SuweetBaeRayz Shirt", image: "SuweetShirt.png", price: 29.99, restaurant: "SweetBaeRayz Hawaiian Shirts" },
+    { name: "Surf's Up Dude Shirt", image: "SurfShirt.png", price: 29.99, restaurant: "SweetBaeRayz Hawaiian Shirts" },
+    { name: "Porky The Shirt", image: "PulledPorkshirt.png", price: 29.99, restaurant: "SweetBaeRayz Hawaiian Shirts" },
+    { name: "Garlic Green Beans", image: "GarlicGreenBeans.png", price: 4.99, restaurant: "SuweetBaeRayz BBQ" },
+    { name: "Fresh Pineapple Juice", image: "FreshPineappleJuice.png", price: 8.99, restaurant: "SushiLand" },
+    { name: "Latte de Lonnie", image: "LatteLonnie.png", price: 4.99, restaurant: "SmitherBeans" },
+{ name: "Hotty Chocolate", image: "Hotchocolate.png", price: 3.99, restaurant: "SmitherBeans" },
+{ name: "Best Coffee", image: "BlackCoffee.png", price: 2.99, restaurant: "SmitherBeans" }
+
   ];
 
   if (menuItemsContainer) {
@@ -106,7 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
       card.innerHTML = `
         <img src="assets/${item.image}" alt="${item.name}" class="w-40 h-40 object-cover rounded-full mx-auto mb-3">
         <h3 class="text-lg font-semibold text-center">${item.name}</h3>
-        <p class="text-sm text-gray-600 text-center mb-2">$${item.price.toFixed(2)}</p>
+        <p class="text-sm text-gray-600 text-center mb-1">$${item.price.toFixed(2)}</p>
+        <p class="text-xs text-center font-bold mb-2 ${
+          item.restaurant === "SuweetBaeRayz BBQ" ? "text-red-600" :
+          item.restaurant === "SweetBaeRayz Hawaiian Shirts" ? "text-purple-600" :
+          item.restaurant === "SushiLand" ? "text-blue-600" : "text-gray-400"
+        }">${item.restaurant}</p>
         <div class="text-center">
           <button class="bg-lime-600 text-white px-4 py-1 rounded hover:bg-lime-700 transition add-to-cart" data-name="${item.name}" data-price="${item.price}">
             Add to Cart
@@ -117,14 +126,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- [12_Adding_Interactivity_with_DOM_Events.pdf] Handle Add to Cart ---
+  // --- dom setup Adding_Interactivity_with_DOM_Events.pdf add to cart ---
   document.addEventListener("click", function (e) {
     if (e.target.classList.contains("add-to-cart")) {
       const name = e.target.dataset.name;
       const price = parseFloat(e.target.dataset.price);
 
+      // ✅ Find the full menu item object to get the restaurant
+      const item = menuItems.find(i => i.name === name);
+      const restaurant = item ? item.restaurant : "Unknown";
+
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart.push({ name, price });
+      cart.push({ name, price, restaurant });
       localStorage.setItem("cart", JSON.stringify(cart));
 
       alert(`${name} added to cart!`);
@@ -140,6 +153,18 @@ document.addEventListener("DOMContentLoaded", () => {
         item.name.toLowerCase().includes(searchTerm)
       );
       renderMenuItems(filteredItems);
+    });
+  }
+
+  // ✅ Added: Restaurant Filter Support
+  const restaurantFilter = document.getElementById("restaurantFilter");
+  if (restaurantFilter) {
+    restaurantFilter.addEventListener("change", () => {
+      const selected = restaurantFilter.value;
+      const filtered = selected === "all"
+        ? menuItems
+        : menuItems.filter(item => item.restaurant === selected);
+      renderMenuItems(filtered);
     });
   }
 
