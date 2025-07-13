@@ -1,4 +1,4 @@
-// --- users JavaScript_Fundamentals.pdf ---
+// users JavaScript_Fundamentals.pdf ---
 if (!localStorage.getItem("adminUser")) {
   localStorage.setItem("adminUser", JSON.stringify({
     username: "BaeRae@gmail.com",
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Working_with_Arrays.pdf dynamic menu ---
+  // Working_with_Arrays.pdf dynamic menu
   const menuItemsContainer = document.getElementById("menuItems");
   const menuItems = [
     { name: "Teriyaki Chicken", image: "TeryakiChicken.png", price: 8, restaurant: "SuweetBaeRayz BBQ" },
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- [13_Applying_Text_Styling_Borders_and_Background_Images_in_HTML.pdf] Filter/Search Items ---
+  // search Applying_Text_Styling_Borders_and_Background_Images_in_HTML.pdf]  ---
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
     searchInput.addEventListener("input", function () {
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ Added: Restaurant Filter Support
+  // restaraunt filter
   const restaurantFilter = document.getElementById("restaurantFilter");
   if (restaurantFilter) {
     restaurantFilter.addEventListener("change", () => {
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- [14_Working_with_Forms_and_Storage.pdf] Display Cart Items on Cart Page ---
+  // --- cart itmes working_with_Forms_and_Storage.pdf]  ---
   const cartContainer = document.getElementById("cartItems");
   const cartTotal = document.getElementById("cartTotal");
 
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cartTotal.textContent = `$${total.toFixed(2)}`;
   }
 
-  // --- [12_Adding_Interactivity_with_DOM_Events.pdf] Remove Items from Cart ---
+  // --- dom cart item removal Adding_Interactivity_with_DOM_Events.pdf  ---
   if (cartContainer) {
     cartContainer.addEventListener("click", function (e) {
       if (e.target.classList.contains("remove-item")) {
