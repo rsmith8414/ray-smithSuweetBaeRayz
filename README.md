@@ -30,15 +30,15 @@ Sprint 2
 •	As a dev, I want to store all data in localStorage so it persists between sessions.
 •	As a dev, I want to implement validation and UI enhancements like rounded images for UX improvements
 4. Project Git Repository
-GitHub: https://github.com/your-username/suweetbaerayz
+GitHub: https://github.com/rsmith8414/ray-smithSuweetBaeRayz
 To clone the repo:
 
-    git clone https://github.com/your-username/suweetbaerayz
-[GITHUB SCREENSHOT PLACEHOLDER]
+    https://github.com/rsmith8414/ray-smithSuweetBaeRayz
+
 5. How to Run the Project
 1. Clone the repository:
 
-    git clone https://github.com/your-username/suweetbaerayz
+    git clone https://github.com/rsmith8414/ray-smithSuweetBaeRayz
 
 2. Open the folder in VS Code
 3. Open index.html in a browser
